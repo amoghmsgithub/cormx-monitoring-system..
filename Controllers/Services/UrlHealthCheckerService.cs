@@ -1,19 +1,20 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace UrlHealthMonitor.Services
 {
     public class UrlHealthCheckerService : BackgroundService
     {
         private readonly ILogger<UrlHealthCheckerService> _logger;
-        private readonly IUrlHealthProcessor _processor;
+        private readonly IServiceScopeFactory _scopeFactory;
 
         public UrlHealthCheckerService(
             ILogger<UrlHealthCheckerService> logger,
-            IUrlHealthProcessor processor)
+            IServiceScopeFactory scopeFactory)
         {
             _logger = logger;
-            _processor = processor;
+            _scopeFactory = scopeFactory;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -24,7 +25,11 @@ namespace UrlHealthMonitor.Services
             {
                 try
                 {
-                    await _processor.ProcessAsync(stoppingToken);
+                    using (var scope = _scopeFactory.CreateScope())
+                    {
+                        var processor = scope.ServiceProvider.GetRequiredService<IUrlHealthProcessor>();
+                        await processor.ProcessAsync(stoppingToken);
+                    }
                 }
                 catch (Exception ex)
                 {
