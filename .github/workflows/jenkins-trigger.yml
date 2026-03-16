@@ -1,0 +1,16 @@
+name: Trigger Jenkins Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Jenkins Job
+        run: |
+          curl -X POST "https://hastrier-leopoldo-nonadhering.ngrok-free.dev/job/UrlHealthMonitor-CI/build" \
+          --user AMOGH_MS:${{ secrets.JENKINS_TOKEN }}
