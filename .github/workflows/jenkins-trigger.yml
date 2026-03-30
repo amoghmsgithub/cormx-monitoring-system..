@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Trigger Jenkins Job
         run: |
-          curl -X POST "https://hastrier-leopoldo-nonadhering.ngrok-free.dev/job/UrlHealthMonitor-CI/build" \
+          curl -X POST "https://nastier-leopoldo-nonadhering.ngrok-free.dev/job/UrlHealthMonitor-CI/build?token=jenkins-trigger" \
           --user AMOGH_MS:${{ secrets.JENKINS_TOKEN }}
