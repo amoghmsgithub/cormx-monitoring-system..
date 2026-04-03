@@ -98,8 +98,7 @@ The system is designed to operate in **enterprise environments**, supporting mis
 
 ---
 
-## 📷 Demo / Screenshots
-*(Add UI screenshots here later)*
+
 
 ---
 
