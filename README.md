@@ -21,7 +21,7 @@ The system is designed to operate in **enterprise environments**, supporting mis
 - Automated recovery via APIs & webhooks  
 - CI/CD integrated deployment pipeline  
 
-*(Architecture diagram coming soon)*
+*(Architecture diagram coming soon)
 
 ---
 
